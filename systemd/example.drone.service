@@ -1,0 +1,12 @@
+[Unit]
+Description=Drone CI
+After=docker.service nginx.service
+
+[Service]
+Restart=always
+ExecStart=/usr/libexec/docker/cli-plugins/docker-compose -f /opt/DroneCI/docker-compose.yaml up
+ExecStop=/usr/libexec/docker/cli-plugins/docker-compose -f /opt/DroneCI/docker-compose.yaml down
+ExecReload=/usr/libexec/docker/cli-plugins/docker-compose -f /opt/DroneCI/docker-compose.yaml restart
+
+[Install]
+WantedBy=multi-user.target

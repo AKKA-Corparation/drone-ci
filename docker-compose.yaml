@@ -15,12 +15,7 @@ services:
         condition: service_healthy
   first_runner:
     image: drone/drone-runner-docker:1
-    environment:
-      - DRONE_RPC_PROTO=${DRONE_SERVER_PROTO:-http}
-      - DRONE_RPC_HOST=${DRONE_SERVER_HOST:-localhost:4040}
-      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET:-NOT_SO_SECRET}
-      - DRONE_RUNNER_CAPACITY=${DRONE_RUNNER_CAPACITY:-2}
-      - DRONE_RUNNER_NAME=${DRONE_RUNNER_NAME:-first-runner}
+    env_file: ${APP_DOTENV:-.env}
     depends_on:
       - server
     restart: always
