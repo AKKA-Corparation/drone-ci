@@ -32,6 +32,7 @@ services:
       - POSTGRES_USER=${DB_USER:-akka-cc}
       - POSTGRES_PASSWORD=${DB_PASSWORD:-FehKNot7}
       - POSTGRES_DB=${DB_NAME:-akka-cc}
+    restart: always
     ports:
       - "5432:5432"
     healthcheck:
